@@ -1,3 +1,11 @@
+/**
+ SGBD: MySQL version 8.0.45 
+ Justificación:  
+ - Manejo de transacciones críticas: al ser una base de datos relacional permite mantener las propiedades ACID necesarias para el contexto critico como transferencias bancarias 
+ - Mantiene consistencia e integridad de datos por medio de claves foráneas, restricciones e índices 
+ - Controla simultaneidad de transacciones y bloqueos por medio del motor innoDB 
+*/
+-- DDL Esquema
 CREATE DATABASE transaccional_novobanco
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
@@ -55,7 +63,7 @@ CREATE TABLE comision (
     moneda VARCHAR(10),
     activa BOOLEAN NOT NULL DEFAULT TRUE
 );
-/* INDICES NECESARIOS */
+/* INDICES*/
 CREATE UNIQUE INDEX idx_numero_cuenta
 ON cuenta (numero_cuenta);
 
@@ -72,6 +80,22 @@ ON movimiento (id_transaccion);
 
 CREATE INDEX idx_movimiento_fecha ON movimiento (fecha);
 
+/**
+Decisiones de diseño:
+Se optó por una normalizacion de hasta 3FN centrandose principalmente en las principales
+entidades relacionadas que son: Cliente Cuenta Transaccion Movimiento.
+Adicionalmente, se agregó una tabla de catálogo"Tipo de Cuenta" considerando el echo de que
+los tipos de cuenta al ser propio del negocio hay una alta probabilidad de cambio; 
+ya sea de incorporar nuevos tipos de cuenta o modificar los existentes.
+Se definieron indices principalmente para optimizar las consultas esperadas como son
+los datos de cuenta y el historial de movimientos. También se agregaron indices en 
+claves primarias y foraneas para mejorar integridad referencias, asi como mejorar el
+rendimiento en consultas que requieran JOINS.
+El historial paginado se abarca mediante el indice de movimientos compuesto por el id_cuenta
+y la fecha. Lo que permite filtrar por cuenta y ordenar por fecha de tal manera que podemos evitar
+escaneos completos de tabla, mejorando asi el rendimiento de la consulta especialmente con
+grandes cantidades de registros.
+*/
 
 
 
