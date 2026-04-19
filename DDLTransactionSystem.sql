@@ -96,6 +96,10 @@ y la fecha. Lo que permite filtrar por cuenta y ordenar por fecha de tal manera 
 escaneos completos de tabla, mejorando asi el rendimiento de la consulta especialmente con
 grandes cantidades de registros.
 */
+/*rellenar tabla tipo de cuenta*/
+INSERT INTO tipo_cuenta VALUES 
+(NULL, 'ahorros'),
+(NULL, 'corriente');
 
 
 
