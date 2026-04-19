@@ -70,6 +70,6 @@ public class Cuenta {
     public void setTipoCuenta(TipoCuenta tipoCuenta) { this.tipoCuenta = tipoCuenta; }
 
     public enum EstadoCuenta {
-        ACTIVA, BLOQUEADA, CERRADA
+        activa, bloqueada, cerrada
     }
 }
