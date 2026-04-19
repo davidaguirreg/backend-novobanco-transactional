@@ -1,4 +1,7 @@
 
 # Archivos compilados de Java
 *.class
-
+target/
+.vscode/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
