@@ -11,6 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MovimientoRepository extends JpaRepository<Movimiento, Long> {
 
-    @Query("SELECT m FROM Movimiento m WHERE m.cuenta.idCuenta = :cuentaId ORDER BY m.fechaMovimiento DESC")
-    Page<Movimiento> findByCuentaIdOrderByFechaMovimientoDesc(@Param("cuentaId") Long cuentaId, Pageable pageable);
+    @Query("SELECT m FROM Movimiento m WHERE m.cuenta.idCuenta = :cuentaId ORDER BY m.fecha DESC")
+    Page<Movimiento> findByCuentaIdOrderByFechaDesc(@Param("cuentaId") Long cuentaId, Pageable pageable);
 }

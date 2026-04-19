@@ -15,7 +15,4 @@ import java.util.Optional;
 public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
 
     Optional<Cuenta> findByNumeroCuenta(String numeroCuenta);
-
-    @Query("SELECT m FROM Movimiento m WHERE m.cuenta.idCuenta = :cuentaId ORDER BY m.fechaMovimiento DESC")
-    Page<Movimiento> findMovimientosByCuentaId(@Param("cuentaId") Long cuentaId, Pageable pageable);
 }

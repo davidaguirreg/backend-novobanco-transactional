@@ -2,7 +2,6 @@ package com.novobanco.transactional.entity;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +45,6 @@ public class Transaccion {
     // Getters and Setters
     public Long getIdTransaccion() { return idTransaccion; }
     public void setIdTransaccion(Long idTransaccion) { this.idTransaccion = idTransaccion; }
-
-    public BigDecimal getMonto() { return monto; }
-    public void setMonto(BigDecimal monto) { this.monto = monto; }
 
     public LocalDateTime getFechaTransaccion() { return fechaTransaccion; }
     public void setFechaTransaccion(LocalDateTime fechaTransaccion) { this.fechaTransaccion = fechaTransaccion; }
