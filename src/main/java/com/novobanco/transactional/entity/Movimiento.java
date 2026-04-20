@@ -70,10 +70,10 @@ public class Movimiento {
     public void setTransaccion(Transaccion transaccion) { this.transaccion = transaccion; }
 
     public enum TipoMovimiento {
-        DEBITO, CREDITO
+        debito, credito
     }
 
     public enum TipoEstado {
-        ACTIVO, REVERTIDO
+        activo, revertido
     }
 }

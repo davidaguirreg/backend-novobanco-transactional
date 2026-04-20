@@ -78,10 +78,22 @@ public class AccountService {
                 .orElseThrow(() -> new AccountNotFoundException("Cuenta no encontrada"));
         return mapToAccountResponse(cuenta);
     }
-    
+
     private AccountResponse mapToAccountResponse(Cuenta cuenta) {
         return new AccountResponse(cuenta.getIdCuenta(), cuenta.getNumeroCuenta(), cuenta.getSaldoDisponible(), cuenta.getEstado().name(), cuenta.getCliente().getNombre(), cuenta.getTipoCuenta().getNombre());
     }
 
-    
+    public Page<MovementResponse> getAccountMovements(Long accountId, Pageable pageable) {
+        // Verificar que la cuenta existe
+        cuentaRepository.findById(accountId)
+                .orElseThrow(() -> new AccountNotFoundException("Cuenta no encontrada"));
+
+        Page<Movimiento> movimientos = movimientoRepository.findByCuentaIdOrderByFechaDesc(accountId, pageable);
+        return movimientos.map(this::mapToMovementResponse);
+    }
+
+    private MovementResponse mapToMovementResponse(Movimiento movimiento) {
+        return new MovementResponse(movimiento.getIdMovimiento(), movimiento.getMonto(), movimiento.getFecha(), movimiento.getTipo().name(), null);
+    }
+        
 }
