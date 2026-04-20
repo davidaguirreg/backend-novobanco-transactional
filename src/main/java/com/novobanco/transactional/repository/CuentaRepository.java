@@ -18,6 +18,6 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Long> {
     Optional<Cuenta> findByNumeroCuenta(String numeroCuenta);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
-    @Query("SELECT c FROM cuenta c WHERE c.numero_cuenta = :numeroCuenta")
+    @Query("SELECT c FROM Cuenta c WHERE c.numeroCuenta = :numeroCuenta")
     Optional<Cuenta> findByNumeroCuentaForUpdate(@Param("numeroCuenta") String numeroCuenta);
 }

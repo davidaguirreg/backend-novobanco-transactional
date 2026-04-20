@@ -3,8 +3,6 @@ package com.novobanco.transactional.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "cuenta")
