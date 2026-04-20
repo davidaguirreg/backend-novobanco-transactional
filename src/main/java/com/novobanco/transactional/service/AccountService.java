@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -48,8 +47,11 @@ public class AccountService {
         }
 
         // Obtener tipo de cuenta
-        TipoCuenta tipoCuenta = request.getTipoCuenta();
-        if (tipoCuenta == null) {
+        TipoCuenta tipoCuenta;
+        if(request.getTipoCuenta()!=null && request.getTipoCuenta().getIdTipoCuenta() != null) {
+            tipoCuenta = this.tipoCuentaRepository.findById(request.getTipoCuenta().getIdTipoCuenta())
+                        .orElseThrow(() -> new IllegalArgumentException("Tipo cuenta no encontrado"));
+        } else {
             throw new IllegalArgumentException("Tipo de cuenta es requerido");
         }
 
