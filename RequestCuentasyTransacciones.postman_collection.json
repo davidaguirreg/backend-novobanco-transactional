@@ -1,0 +1,187 @@
+{
+  "info": {
+    "_postman_id": "379ddfd4-5329-4abe-8704-18f118036ede",
+    "name": "RequestCuentasyTransacciones",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54136771",
+    "_collection_link": "https://go.postman.co/collection/54136771-379ddfd4-5329-4abe-8704-18f118036ede?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "retiro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"numeroCuenta\":\"255C8720-0AA7-4526-8\",\r\n    \"monto\":200.00\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacciones/retiro",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacciones",
+            "retiro"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "deposito",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"numeroCuenta\": \"CF7FCE29-B17F-4A4E-A\",\r\n    \"monto\": 25\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacciones/deposito",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacciones",
+            "deposito"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "crear-cuenta",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"cliente\": {\r\n    \"idCliente\": null,\r\n    \"nombre\": \"Daniela Sandoval\"\r\n  },\r\n  \"tipoCuenta\": {\r\n    \"idTipoCuenta\": 1\r\n  },\r\n  \"moneda\": \"USD\",\r\n  \"estado\": \"activa\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/cuentas",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cuentas"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "info-cuenta",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/cuentas/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "cuentas",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "movimientos-cuenta",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"numeroCuentaOrigen\": \"255C8720-0AA7-4526-8\",\r\n    \"numeroCuentaDestino\": \"9DAB808A-EF4C-46AB-A\",\r\n    \"monto\": 100\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacciones/cuentas/3/movimientos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacciones",
+            "cuentas",
+            "3",
+            "movimientos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "transferencia",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"numeroCuentaOrigen\": \"255C8720-0AA7-4526-8\",\r\n    \"numeroCuentaDestino\": \"9DAB808A-EF4C-46AB-A\",\r\n    \"monto\": 25\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transacciones/transferencia",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "transacciones",
+            "transferencia"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
