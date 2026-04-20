@@ -9,16 +9,14 @@ public class MovementResponse {
     private BigDecimal monto;
     private LocalDateTime fechaMovimiento;
     private String tipoMovimiento;
-    private String descripcionTransaccion;
 
     public MovementResponse() {}
 
-    public MovementResponse(Long idMovimiento, BigDecimal monto, LocalDateTime fechaMovimiento, String tipoMovimiento, String descripcionTransaccion) {
+    public MovementResponse(Long idMovimiento, BigDecimal monto, LocalDateTime fechaMovimiento, String tipoMovimiento) {
         this.idMovimiento = idMovimiento;
         this.monto = monto;
         this.fechaMovimiento = fechaMovimiento;
         this.tipoMovimiento = tipoMovimiento;
-        this.descripcionTransaccion = descripcionTransaccion;
     }
 
     // Getters and Setters
@@ -34,6 +32,4 @@ public class MovementResponse {
     public String getTipoMovimiento() { return tipoMovimiento; }
     public void setTipoMovimiento(String tipoMovimiento) { this.tipoMovimiento = tipoMovimiento; }
 
-    public String getDescripcionTransaccion() { return descripcionTransaccion; }
-    public void setDescripcionTransaccion(String descripcionTransaccion) { this.descripcionTransaccion = descripcionTransaccion; }
 }

@@ -33,7 +33,7 @@ public class TransactionService {
 
     @Transactional
     public TransactionResponse deposit(DepositRequest request) {
-        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(request.getNumeroCuenta())
+        Cuenta cuenta = cuentaRepository.findByNumeroCuentaForUpdate(request.getNumeroCuenta())
                 .orElseThrow(() -> new InvalidTransactionException("Cuenta no encontrada"));
 
         if (cuenta.getEstado() != Cuenta.EstadoCuenta.activa) {
@@ -60,7 +60,7 @@ public class TransactionService {
 
     @Transactional
     public TransactionResponse withdraw(WithdrawalRequest request) {
-        Cuenta cuenta = cuentaRepository.findByNumeroCuenta(request.getNumeroCuenta())
+        Cuenta cuenta = cuentaRepository.findByNumeroCuentaForUpdate(request.getNumeroCuenta())
                 .orElseThrow(() -> new InvalidTransactionException("Cuenta no encontrada"));
 
         if (cuenta.getEstado() != Cuenta.EstadoCuenta.activa) {
@@ -95,14 +95,18 @@ public class TransactionService {
             throw new InvalidTransactionException("No se puede transferir a la misma cuenta");
         }
 
-        Cuenta cuentaOrigen = cuentaRepository.findByNumeroCuenta(request.getNumeroCuentaOrigen())
+        Cuenta cuentaOrigen = cuentaRepository.findByNumeroCuentaForUpdate(request.getNumeroCuentaOrigen())
                 .orElseThrow(() -> new InvalidTransactionException("Cuenta origen no encontrada"));
 
-        Cuenta cuentaDestino = cuentaRepository.findByNumeroCuenta(request.getNumeroCuentaDestino())
+        Cuenta cuentaDestino = cuentaRepository.findByNumeroCuentaForUpdate(request.getNumeroCuentaDestino())
                 .orElseThrow(() -> new InvalidTransactionException("Cuenta destino no encontrada"));
 
-        if (cuentaOrigen.getEstado() != Cuenta.EstadoCuenta.activa || cuentaDestino.getEstado() != Cuenta.EstadoCuenta.activa) {
-            throw new InvalidTransactionException("Una de las cuentas no está activa");
+        if (cuentaOrigen.getEstado() != Cuenta.EstadoCuenta.activa) {
+            throw new InvalidTransactionException("La cuenta origen no está activa");
+        }
+
+        if (cuentaDestino.getEstado() != Cuenta.EstadoCuenta.activa) {
+            throw new InvalidTransactionException("La cuenta destino no está activa");
         }
 
         if (cuentaOrigen.getSaldoDisponible().compareTo(request.getMonto()) < 0) {

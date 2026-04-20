@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Service
 public class AccountService {
@@ -95,7 +94,7 @@ public class AccountService {
     }
 
     private MovementResponse mapToMovementResponse(Movimiento movimiento) {
-        return new MovementResponse(movimiento.getIdMovimiento(), movimiento.getMonto(), movimiento.getFecha(), movimiento.getTipo().name(), null);
+        return new MovementResponse(movimiento.getIdMovimiento(), movimiento.getMonto(), movimiento.getFecha(), movimiento.getTipo().name());
     }
         
 }
