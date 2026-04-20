@@ -15,9 +15,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Index;
 
 @Entity
-@Table(name = "transaccion")
+@Table(name = "transaccion", indexes = {
+    @Index( name = "idx_transaccion_fecha", columnList = "fecha_hora_registro")
+})
 public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

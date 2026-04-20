@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "cuenta")
+@Table(name = "cuenta", indexes = {
+    @Index(name = "idx_cuenta_cliente", columnList = "id_cliente")
+}
+)
 public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,7 +6,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "movimiento")
+@Table(name = "movimiento", indexes = {
+    @Index(name = "idx_movimiento_transaccion", columnList = "id_transaccion"),
+    @Index(name = "idx_movimiento_fecha", columnList = "fecha"),
+    @Index(name = "idx_movimiento_cuenta_fecha", columnList = "id_cuenta, fecha"),
+})
 public class Movimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
